@@ -39,6 +39,8 @@ render() {
   <div className="app">
     <Route exact path="/" render={() => <ListBooks booksOnShelf={this.state.books} />}/>
     <Route  path="/search"render={() =><SearchPage onChangeShelf={this.ChangeShelf} booksOnShelf={this.state.books} />} />
+ <hr/>
+  <footer>My Reads Project. By Maram Al-Khatib</footer>
   </div>
     ); //end return
   } //end render

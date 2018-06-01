@@ -9,6 +9,7 @@ body, .app {
     background-image: radial-gradient(black,SlateGrey);
 }
 
+footer{text-align: center;}
 /*---------------------------------------- The Main Page CSS ------------------------------------- */
 
 .list-books-title {
