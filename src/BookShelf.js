@@ -23,7 +23,8 @@ class BookShelf extends React.Component {
                       backgroundImage: "url(" + book.imageLinks.thumbnail + ")"
                     }} />
                   <div className="book-shelf-changer">
-                    <select value={book.shelf} onChange={eve => this.props.onChangeShelf(book.id, eve)}>
+                    <select value={book.shelf} onChange={eve => this.props.onChangeShelf(book.id, eve)}   
+                    >
                       <option value="none" disabled>  Move to...   </option>
                       <option value="currentlyReading">Currently Reading</option>
                       <option value="wantToRead">Want to Read</option>

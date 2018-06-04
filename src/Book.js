@@ -12,7 +12,9 @@ return (
         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageThumb})` }}></div>
            <div className="book-shelf-changer">
               <select onChange={eve => controlShelfChange(book, eve.target.value)} value="none" >
-                <option value="none" disabled>Move to...</option>
+              <option value="none" disabled
+              // though both "none" & "move to..." have none as value but the first is disabled therefore its diffrent
+              >Move to...</option>
                 <option value="currently Reading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Read</option>
