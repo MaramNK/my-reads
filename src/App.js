@@ -13,21 +13,21 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then(data => {
       this.setState({ books: data });
+      this.render(); 
     });
   }
 
 //the methode to change shelfes, called from render() in <SearchPage/> 
-   ChangeShelf = (book: any, shelf: string) => {
-    BooksAPI.update(book, shelf)
-    //if requste seccede then call getBooks
-     .then(response => {this.getBooks();});
-  }; // End ChaneShelf
+   changeShelf = (book: any, shelf: string) => {
+   BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf        
+      this.setState(state => ({
+        books: state.books.filter(b => b.id !== book.id).concat(book)
+      }))     
+    }) //end of .then
+    }// End ChaneShelf
 
-  getBooks() {
-    BooksAPI.getAll()
-    //if requste seccede then call getBooks
-    .then(data => { this.setState({ books: data }); });
-  } //End getBooks()
+   
 
 
 /* used the URL in the browser's address bar to keep track of which page we're on (<Route/>).
@@ -38,7 +38,7 @@ render() {
  return (
   <div className="app">
     <Route exact path="/" render={() => <ListBooks booksOnShelf={this.state.books} />}/>
-    <Route  path="/search"render={() =><SearchPage onChangeShelf={this.ChangeShelf} booksOnShelf={this.state.books} />} />
+    <Route  path="/search"render={() =><SearchPage onChangeShelf={this.changeShelf} booksOnShelf={this.state.books} />} />
  <hr/>
   <footer>My Reads Project. By Maram Al-Khatib</footer>
   </div>

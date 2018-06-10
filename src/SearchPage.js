@@ -14,13 +14,14 @@ class SearchPage extends Component {
       this.setState({ query });
   }
 
-  controlShelfChange(book, shelf) {
-    BooksAPI.update(book, shelf)
-    //when update work displays a message that states as such
-        .then(() => shelf !== 'none' ? alert(`${book.title} has been added seccesufully`) : null)
-    //when update failes for anyreson a message is displayed stating as such
-        .catch(() => alert('An error has accored! Please try again!'));
-  }
+  controlShelfChange(book, shelf){
+   BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf        
+      this.setState(state => ({
+        books: state.books.filter(b => b.id !== book.id).concat(book)
+      }))     
+    }) //end of .then
+    }// End ChaneShelf
 
 //takes care of showing the search results in the book-grid (called in line 58)
   displaySearchResults() {
@@ -39,12 +40,14 @@ class SearchPage extends Component {
                       />
                   );
               });}}
+              
+handle(){window.location.reload(true);}
 
     render() {
       return (
         <div className="search-books">
           <div className="search-books-bar">
-            <Link to='/' className='close-search'> Close </Link>
+            <Link to='/' className='close-search' onClick={this.handle}> Close </Link>
             <div className="search-books-input-wrapper">
               <input
                   type="text"
