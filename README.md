@@ -39,7 +39,6 @@ my-reads/
     index.css
     index.js
     ListBooks.js
-    logo.svg
     registerServiceWorker.js
     SearchPage.js
    ```
