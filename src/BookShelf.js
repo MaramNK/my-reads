@@ -1,11 +1,13 @@
-import React from "react";
+ import React from "react";
+import LoadingPage from "./LoadingPage";
 
 class BookShelf extends React.Component {
-  state = {};
+  state = {isLoading: true};
+componentDidMount() {this.setState({isLoading: false})}
 
   render() {
     return (
-   
+   this.state.isLoading ? <LoadingPage/> : 
          <div className="app"> 
             <div className="list-books-content">
               <div>
@@ -47,6 +49,10 @@ class BookShelf extends React.Component {
       </div> 
 </div>
   ) ;
+  }
+}
+export default BookShelf;
+
   }
 }
 export default BookShelf;
